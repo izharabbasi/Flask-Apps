@@ -27,5 +27,20 @@ def query():
     location = request.args.get('location')
     return '<h1>hello {}, you are from {} and you are on qurey page</h1>'.format(name,location)
 
+@app.route('/form')
+def form():
+    return '''<form method="POST" action="/process">
+                <input type="text" name="name">
+                <input type="text" name="location">
+                <input type="submit" value="Submit">
+              </form>'''
+
+@app.route('/process', methods=["POST"])
+def process():
+    name = request.form['name']
+    loaction = request.form['location']
+    return '<h1>hello {}, You are from {} and You have succesfully submitted the form</h1>'.format(name,loaction)
+
+
 if __name__ == '__main__':
     app.run()
