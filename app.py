@@ -1,4 +1,4 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify, request
 
 app = Flask(__name__)
 
@@ -19,6 +19,13 @@ def profile():
 @app.route('/json')
 def json():
     return jsonify({'key':'value', 'key2':[1,2,3,4]})
+
+
+@app.route('/query')
+def query():
+    name = request.args.get('name')
+    location = request.args.get('location')
+    return '<h1>hello {}, you are from {} and you are on qurey page</h1>'.format(name,location)
 
 if __name__ == '__main__':
     app.run()
