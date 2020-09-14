@@ -27,20 +27,40 @@ def query():
     location = request.args.get('location')
     return '<h1>hello {}, you are from {} and you are on qurey page</h1>'.format(name,location)
 
+# @app.route('/form',methods=["POST","GET"])
+# def form():
+#     if request.method == "GET":
+#         return '''<form method="POST" action="/form">
+#                     <input type="text" name="name">
+#                     <input type="text" name="location">
+#                     <input type="submit" value="Submit">
+#                 </form>'''
+#     else:
+#         name = request.form['name']
+#         loaction = request.form['location']
+#         return '<h1>hello {}, You are from {} and You have succesfully submitted the form</h1>'.format(name,loaction)
+
 @app.route('/form')
 def form():
-    return '''<form method="POST" action="/process">
-                <input type="text" name="name">
-                <input type="text" name="location">
-                <input type="submit" value="Submit">
-              </form>'''
+     return '''<form method="POST" action="/form">
+                    <input type="text" name="name">
+                    <input type="text" name="location">
+                    <input type="submit" value="Submit">
+                </form>'''
 
-@app.route('/process', methods=["POST"])
-def process():
+@app.route('/form', methods=["POST"])
+def form1():
     name = request.form['name']
     loaction = request.form['location']
     return '<h1>hello {}, You are from {} and You have succesfully submitted the form</h1>'.format(name,loaction)
 
+# '''
+# @app.route('/process', methods=["POST"])
+# def process():
+#     name = request.form['name']
+#     loaction = request.form['location']
+#     return '<h1>hello {}, You are from {} and You have succesfully submitted the form</h1>'.format(name,loaction)
+# '''
 
 @app.route('/processjson',methods=["POST"])
 def processjson():
